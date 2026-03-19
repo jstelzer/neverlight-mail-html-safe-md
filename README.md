@@ -10,11 +10,11 @@ Built for email. Useful anywhere you need to render HTML from an untrusted sourc
 
 ```rust
 // Sanitize HTML to markdown with default email-tuned config
-let md = html_safe_md::sanitize_html("<p>Hello <strong>world</strong></p>");
+let md = neverlight_mail_html_safe_md::sanitize_html("<p>Hello <strong>world</strong></p>");
 assert!(md.contains("**world**"));
 
 // Render an email body (prefers plain text, falls back to sanitized HTML)
-let md = html_safe_md::render_email(
+let md = neverlight_mail_html_safe_md::render_email(
     Some("Hey, just following up on our conversation from yesterday.\n\nLet me know."),
     Some("<p>HTML version</p>"),
 );
@@ -76,32 +76,32 @@ Everything else. Text content inside stripped tags is preserved — only the tag
 
 ```rust
 // Core: sanitize any untrusted HTML to markdown
-html_safe_md::sanitize_html(html: &str) -> String
+neverlight_mail_html_safe_md::sanitize_html(html: &str) -> String
 
 // With custom config (extra tags, size limits)
-html_safe_md::sanitize_html_with(html: &str, config: &Config) -> String
+neverlight_mail_html_safe_md::sanitize_html_with(html: &str, config: &Config) -> String
 
 // Email convenience: prefers plain text, falls back to sanitized HTML
-html_safe_md::render_email(text_plain: Option<&str>, text_html: Option<&str>) -> String
+neverlight_mail_html_safe_md::render_email(text_plain: Option<&str>, text_html: Option<&str>) -> String
 
 // Email plain text output (no markdown, uses html2text for fallback)
-html_safe_md::render_email_plain(text_plain: Option<&str>, text_html: Option<&str>) -> String
+neverlight_mail_html_safe_md::render_email_plain(text_plain: Option<&str>, text_html: Option<&str>) -> String
 
 // Detect junk/stub plain text parts
-html_safe_md::is_junk_plain(text: &str) -> bool
+neverlight_mail_html_safe_md::is_junk_plain(text: &str) -> bool
 ```
 
 ### Configuration
 
 ```rust
-use html_safe_md::Config;
+use neverlight_mail_html_safe_md::Config;
 
 let config = Config {
     max_html_bytes: 256 * 1024,  // default: 512 KB
     max_md_chars: 100_000,       // default: 200K
     extra_tags: Default::default(),
 };
-let md = html_safe_md::sanitize_html_with(html, &config);
+let md = neverlight_mail_html_safe_md::sanitize_html_with(html, &config);
 ```
 
 ## Safety Limits

@@ -15,11 +15,11 @@
 //!
 //! ```rust
 //! // Sanitize HTML to markdown with default email-tuned config
-//! let md = html_safe_md::sanitize_html("<p>Hello <strong>world</strong></p>");
+//! let md = neverlight_mail_html_safe_md::sanitize_html("<p>Hello <strong>world</strong></p>");
 //! assert!(md.contains("**world**"));
 //!
 //! // Render an email body (prefers plain text, falls back to sanitized HTML)
-//! let md = html_safe_md::render_email(
+//! let md = neverlight_mail_html_safe_md::render_email(
 //!     Some("Hey, just following up on our conversation from yesterday.\n\nLet me know."),
 //!     Some("<p>HTML version</p>"),
 //! );
@@ -86,7 +86,7 @@ impl Default for Config {
 /// # Examples
 ///
 /// ```rust
-/// let md = html_safe_md::sanitize_html("<p>Click <a href=\"https://example.com\">here</a></p>");
+/// let md = neverlight_mail_html_safe_md::sanitize_html("<p>Click <a href=\"https://example.com\">here</a></p>");
 /// assert!(md.contains("[here](https://example.com)"));
 /// ```
 pub fn sanitize_html(html: &str) -> String {
@@ -116,14 +116,14 @@ pub fn sanitize_html_with(html: &str, config: &Config) -> String {
 ///
 /// ```rust
 /// // Plain text preferred when it's real content
-/// let md = html_safe_md::render_email(
+/// let md = neverlight_mail_html_safe_md::render_email(
 ///     Some("Hey,\n\nThis is a real email with enough content to not be junk.\n\nCheers"),
 ///     Some("<p>HTML version</p>"),
 /// );
 /// assert!(md.contains("real email"));
 ///
 /// // Falls back to sanitized HTML when plain is a stub
-/// let md = html_safe_md::render_email(
+/// let md = neverlight_mail_html_safe_md::render_email(
 ///     Some("View online"),
 ///     Some("<p>The <strong>actual</strong> newsletter content lives here.</p>"),
 /// );

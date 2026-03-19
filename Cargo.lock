@@ -127,15 +127,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "html-safe-md"
-version = "0.0.2"
-dependencies = [
- "ammonia",
- "html2md",
- "html2text",
-]
-
-[[package]]
 name = "html2md"
 version = "0.2.15"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -446,6 +437,15 @@ name = "memchr"
 version = "2.8.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f8ca58f447f06ed17d5fc4043ce1b10dd205e060fb3ce5b979b8ed8e59ff3f79"
+
+[[package]]
+name = "neverlight-mail-html-safe-md"
+version = "0.1.0"
+dependencies = [
+ "ammonia",
+ "html2md",
+ "html2text",
+]
 
 [[package]]
 name = "new_debug_unreachable"
@@ -968,4 +968,8 @@ dependencies = [
 
 [[patch.unused]]
 name = "neverlight-mail-core"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "neverlight-mail-oauth"
 version = "0.1.0"
